@@ -1,0 +1,17 @@
+DirectoryIndex index.php index.html
+RewriteEngine on
+
+#RewriteBase /
+RewriteCond $1 !^(index\.php|assets|media|favicon\.ico|uploads|robots\.txt|index\.html|googleca7ec246213aff8f\.html)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ ./index.php/$1 [L,QSA]
+
+#block hotlinking#
+#RewriteCond %{HTTP_REFERER} !^$
+#RewriteCond %{HTTP_REFERER} !^http(s)?://(www\.)?example.com [NC]
+#RewriteRule \.(jpg|jpeg|png|gif|css|js)$ - [NC,F,L]
+
+#Redirect ke www
+#RewriteCond %{HTTP_HOST} !^www\.
+#RewriteRule ^(.*)$ http://www.%{HTTP_HOST}/$1 [R=301,L]
